@@ -11,6 +11,7 @@ class Care extends Model
 {
     use HasFactory,Sluggable, SoftDeletes;
 
+    protected $guarded = [];
     /**
      * Return the sluggable configuration array for this model.
      *

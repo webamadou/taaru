@@ -29,6 +29,8 @@ class Institute extends Model
         ];
     }
 
+    protected $guarded = [];
+
     public function city()
     {
         return $this->belongsTo(\App\Models\City::class);
