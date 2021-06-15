@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\Sluggable;
 
-class CareTypes extends Model
+class CareType extends Model
 {
     use HasFactory, SoftDeletes, Sluggable;
 
+    protected $guarded = [];
     /**
      * Return the sluggable configuration array for this model.
      *
@@ -31,11 +32,11 @@ class CareTypes extends Model
 
     public function parent()
     {
-        return $this->belongsTo( \App\Models\CareTypes::class, 'parent_id', 'id' );
+        return $this->belongsTo( \App\Models\CareType::class, 'parent_id', 'id' );
     }
 
     public function children()
     {
-        return $this->hasMany( \App\Models\CareTypes::class, 'parent_id', 'id' );
+        return $this->hasMany( \App\Models\CareType::class, 'parent_id', 'id' );
     }
 }

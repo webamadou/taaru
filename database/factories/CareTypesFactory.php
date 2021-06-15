@@ -21,7 +21,6 @@ class CareTypesFactory extends Factory
      */
     public function definition()
     {
-        dd($this->faker->word());
         return [
             "name" => $this->faker->word(),
             "description" => $this->faker->paragraph(3,true),
