@@ -13,6 +13,6 @@ class CareTypesSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\CareTypes::factory()->count(8)->create();
+        \App\Models\CareType::factory()->count(8)->create();
     }
 }

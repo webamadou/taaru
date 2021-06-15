@@ -22,7 +22,7 @@ class CareFactory extends Factory
      */
     public function definition()
     {
-        $caretype = \App\Models\CareTypes::inRandomOrder()->select('id')->first();
+        $caretype = \App\Models\CareType::inRandomOrder()->select('id')->first();
         $institute = \App\Models\Institute::inRandomOrder()->select('id')->first();
 
         return [

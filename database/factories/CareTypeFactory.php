@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\CareTypes;
+use App\Models\CareType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class CareTypesFactory extends Factory
+class CareTypeFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = CareTypes::class;
+    protected $model = CareType::class;
 
     /**
      * Define the model's default state.
