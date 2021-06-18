@@ -66,5 +66,15 @@ class CareController extends Controller
         return response([], 200);
     }
 
+    public function higlightedCares()
+    {
+        $cares = Care::orderBy('created_at', 'desc')
+                    ->limit(4)
+                    ->with('institute')
+                    ->get();
+        
+        return response($cares, 200);
+    }
+
 
 }

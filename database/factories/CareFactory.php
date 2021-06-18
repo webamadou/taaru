@@ -25,6 +25,10 @@ class CareFactory extends Factory
         $caretype = \App\Models\CareType::inRandomOrder()->select('id')->first();
         $institute = \App\Models\Institute::inRandomOrder()->select('id')->first();
 
+        $image_keywords = ['beauty salon', 'makeup','spa','massage face','make up','hair salon','hair cut'];
+        $random_key = array_rand($image_keywords,2);
+        $unsplashe_img_source = "https://source.unsplash.com/featured/?".$image_keywords[$random_key[0]].",".$image_keywords[$random_key[1]];
+
         return [
             "name" => $this->faker->sentence(3, true),
             "ref" => Str::random(12),
@@ -32,7 +36,7 @@ class CareFactory extends Factory
             "care_type_id" => $caretype->id,
             "institute_id" => $institute->id,
             "price" => $this->faker->randomNumber(5),
-            "images" => $this->faker->imageUrl,
+            "images" => $unsplashe_img_source,
             "views" => $this->faker->randomNumber(3),
             "saved_by" => 1,
         ];
