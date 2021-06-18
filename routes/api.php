@@ -25,3 +25,4 @@ use App\Http\Controllers\V1\CareController;
 Route::resource('caretypes', CareTypesController::class);
 Route::resource('institutes', InstituteController::class);
 Route::resource('cares', CareController::class);
+Route::get('/higlighted-cares', [CareController::class, 'higlightedCares']);

@@ -24,10 +24,11 @@ Vue.component(
     require("./components/ExampleComponent.vue").default
 );
 Vue.component(
-    "secret-component",
-    require("./components/ArticlesComponent.vue")
+    "base-component",
+    require("./components/BasesComponent.vue").default
 );
 
+Vue.component("menu-component", require("./components/MenuComponent.vue"));
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
