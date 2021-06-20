@@ -32,7 +32,7 @@ class Care extends Model
 
     public function care_type()
     {
-        return $this->belongsTo(\App\Models\CareTypes::class);
+        return $this->belongsTo(\App\Models\CareType::class);
     }
 
     public function institute()

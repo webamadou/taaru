@@ -1,0 +1,85 @@
+"A date string with format `Y-m-d`, e.g. `2011-05-23`."
+scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
+
+"A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
+scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+type Query {
+    users: [User!]! @paginate(defaultCount: 10)
+    user(id: ID @eq): User @find
+    cares: [Care!]! @all
+    menus(show_menu: Int @eq): [CareType!]! @all
+    highligh_cares(highlighted: Int @eq): [Care!]! @all
+}
+
+
+
+type User {
+    id: ID!
+    name: String!
+    email: String!
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+type Care {
+    id: ID!
+    name: String!
+    slug: String!
+    ref: String
+    description: String
+    price: String
+    discount_price: String
+    upon_request: Int
+    negotiatable: Int
+    images: String
+    views: Int
+    saved_by: Int
+    created_at: DateTime!
+    updated_at: DateTime!
+    care_type: CareType! @belongsTo
+    institute: Institute! @belongsTo
+}
+
+type CareType {
+    id: ID!
+    name: String!
+    slug: String!
+    description: String
+    institute_type: String
+    image_url: String
+    show_menu: Int
+    position: Int
+    created_at: DateTime!
+    updated_at: DateTime!
+    parent_id: CareType @belongsTo
+    cares: [Care!] @hasMany
+}
+
+type Institute {
+    id: ID!
+    name: String!
+    slug: String!
+    institute_type: Int
+    slogan: String
+    presentation: String
+    email: String
+    telephone1: String
+    telephone2: String
+    telephone3: String
+    fb: String
+    twt: String
+    since: String
+    address: String
+    user: User @belongsTo
+    city: City @belongsTo
+    longitude: String
+    latitude: String
+    institute_zone: String
+    images: String
+    work_days: String
+    saved_by: User @belongsTo
+    created_at: DateTime!
+    updated_at: DateTime!
+    cares: [Care!]! @hasMany
+}

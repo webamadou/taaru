@@ -27,7 +27,7 @@ class CareFactory extends Factory
 
         $image_keywords = ['beauty salon', 'makeup','spa','massage face','make up','hair salon','hair cut'];
         $random_key = array_rand($image_keywords,2);
-        $unsplashe_img_source = "https://source.unsplash.com/featured/?".$image_keywords[$random_key[0]].",".$image_keywords[$random_key[1]];
+        $unsplashe_img_source = "https://source.unsplash.com/featured/?".$image_keywords[$random_key[rand(0,1)]].",".$image_keywords[$random_key[rand(0,1)]];
 
         return [
             "name" => $this->faker->sentence(3, true),
@@ -37,6 +37,7 @@ class CareFactory extends Factory
             "institute_id" => $institute->id,
             "price" => $this->faker->randomNumber(5),
             "images" => $unsplashe_img_source,
+            "highlighted" => rand(0,1),
             "views" => $this->faker->randomNumber(3),
             "saved_by" => 1,
         ];

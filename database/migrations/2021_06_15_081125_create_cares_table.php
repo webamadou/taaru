@@ -27,6 +27,7 @@ class CreateCaresTable extends Migration
             $table->integer("upon_request")->nullable()->default(0);
             $table->integer("negotiatable")->nullable()->default(0);
             $table->text("images")->nullable();
+            $table->integer("highlighted")->nullable()->default(0);
             $table->integer("views")->nullable();
             $table->foreignId("saved_by")->nullable();
 
