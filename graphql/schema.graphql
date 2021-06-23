@@ -10,6 +10,7 @@ type Query {
     cares: [Care!]! @all
     menus(show_menu: Int @eq): [CareType!]! @all
     highligh_cares(highlighted: Int @eq): [Care!]! @all
+    cares_from(care_type_id: ID @eq): [Care!]! @all
 }
 
 

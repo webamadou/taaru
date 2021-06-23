@@ -5,8 +5,35 @@
  */
 
 require("./bootstrap");
+import { ApolloClient } from 'apollo-client';
+import { createHttpLink } from 'apollo-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import VueApollo from 'vue-apollo';
+import Vue from 'vue';
 
 window.Vue = require("vue").default;
+
+/* appolo settings */
+//HTTP CONNCETION TO API
+const httpLink = createHttpLink({
+  // You should use an absolute URL here
+  uri: 'http://localhost:8000/graphql',
+});
+
+// Cache implementation
+const cache = new InMemoryCache()
+
+// Create the apollo client
+const apolloClient = new ApolloClient({
+  link: httpLink,
+  cache,
+});
+
+Vue.use(VueApollo);
+const apolloProvider = new VueApollo({
+  defaultClient: apolloClient,
+});
+/* appolo settings */
 
 /**
  * The following block of code may be used to automatically register your
@@ -36,5 +63,6 @@ Vue.component("menu-component", require("./components/MenuComponent.vue"));
  */
 
 const app = new Vue({
-    el: "#app"
+    el: "#app",
+    apolloProvider
 });
