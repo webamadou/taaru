@@ -1,7 +1,7 @@
 <template>
     <div class="grid-wrapper">
         <div class="grid-content">
-            <template v-for="care in cares_from">
+            <template v-for="care in cares_from.data">
                 <div class="box box-image" v-bind:key="care.id">
                     <div class="care-image">
                         <img :src="care.images" alt="`${care[0].name}`" />
@@ -48,17 +48,19 @@ export default {
     }, */
     apollo: {
         cares_from: gql `query{
-                cares_from(care_type_id: 6){
-                    name
-                    slug
-                    description
-                    price
-                    images
-                    institute {
+                cares_from(first:4, care_type_id: 3){
+                    data{
                         name
                         slug
+                        description
+                        price
                         images
-                        presentation
+                        institute {
+                            name
+                            slug
+                            images
+                            presentation
+                        }
                     }
                 }
             }
