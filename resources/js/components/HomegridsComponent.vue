@@ -31,7 +31,8 @@ export default {
         return {
             cares: [],
             cares_from: [],
-            menus: []
+            menus: [],
+            typeID: 1,
         };
     },
     methods: {
@@ -47,8 +48,9 @@ export default {
         this.cares = await fetchCares.data;
     }, */
     apollo: {
-        cares_from: gql `query{
-                cares_from(first:4, care_type_id: 3){
+        cares_from:{ 
+            query: gql `query MyRepos($currenType: ID!){
+                cares_from(first: 4, care_type_id: $currenType){
                     data{
                         name
                         slug
@@ -64,13 +66,24 @@ export default {
                     }
                 }
             }
-        `,
-        menus: gql`query {
-            menus{
-                name
-                slug
-            }
-        }`,
+            `,
+            variables() { 
+                return {
+                    currenType: this.typeID,
+                }
+            },
+            result:function({data}){
+                if(data){
+                this.loading=false
+                }
+            },
+            menus: gql`query {
+                menus{
+                    name
+                    slug
+                }
+            }`,
+        }
     }
 };
 </script>

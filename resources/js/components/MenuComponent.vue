@@ -2,7 +2,7 @@
     <div class="hidden-xs col-sm-12 mainmenu">
         <ul id="menu1" class="nav navbar">
             <li v-bind:key="menu.id" v-for="menu in menus">
-                <a :href="`/${menu.slug}`">{{ menu.name }}</a>
+                <a :href="`/${menu.slug}`" @click.prevent="slideCategGrid" :data-id="menu.id">{{ menu.name }}</a>
             </li>
         </ul>
     </div>
@@ -23,6 +23,11 @@ export default {
         );
         console.log(fetchMenus);
         this.menus = fetchMenus.data;
+    },
+    methods: {
+        slideCategGrid(e){
+            console.log(e.target.getAttribute('data-id'))
+        }
     }
 };
 </script>
